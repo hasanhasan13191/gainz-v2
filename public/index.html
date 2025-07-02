@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gainz Signal Bot</title>
+</head>
+<body>
+  <h1>📊 Gainz Live Signals</h1>
+  <ul id="signals"></ul>
+
+  <script>
+    fetch('/api/signals')
+      .then(res => res.json())
+      .then(data => {
+        const ul = document.getElementById('signals');
+        data.forEach(sig => {
+          const li = document.createElement('li');
+          li.textContent = `${sig.pair} - ${sig.signal} | TP: ${sig.tp} | SL: ${sig.sl}`;
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
